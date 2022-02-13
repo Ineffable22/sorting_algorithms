@@ -10,7 +10,7 @@
  */
 void quick_sort(int *array, size_t size)
 {
-	handle(array, 0, size);
+	handle(array, 0, size, size);
 }
 
 /**
@@ -18,21 +18,22 @@ void quick_sort(int *array, size_t size)
  * @array: array with elements
  * @start: index of the first element
  * @end: index of the last element
+ * @size: size of array
  *
  * Return: Nothing
  */
-void handle(int *array, int start, int end)
+void handle(int *array, int start, int end, size_t size)
 {
 	int index = 0;
 
 	if (end - start <= 1)
 		return;
-	index = partition(array, start, end);
+	index = partition(array, start, end, size);
 
 	if (index > start)
-		handle(array, start, index);
+		handle(array, start, index, size);
 
-	handle(array, index + 1, end);
+	handle(array, index + 1, end, size);
 }
 
 /*Lomuto*/
@@ -41,10 +42,11 @@ void handle(int *array, int start, int end)
  * @array: array with elements
  * @start: index of the first element
  * @end: index of the last element
+ * @size: size of array
  *
  * Return: Nothing
  */
-size_t partition(int *array, int start, int end)
+size_t partition(int *array, int start, int end, size_t size)
 {
 	int i = start, j = 0, tmp = 0, index_part = 0, save = 0;
 	int pivote = array[end - 1], flag = 0;
@@ -68,7 +70,7 @@ size_t partition(int *array, int start, int end)
 					break;
 				}
 			}
-			print_array(array, 10);
+			print_array(array, size);
 			if (flag == -1)
 				break;
 		}
